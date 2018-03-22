@@ -46,7 +46,7 @@ module.exports = {
    */
   check: function(category, content, useExtras = false) {
     return new Promise(function(resolve, reject) {
-      const url = constants.endpoint + '/check/' + category + '/' + content + '/' + useExtras;
+      const url = constants.endpoint + '/filters/check/' + category + '/' + content + '/' + useExtras;
       request.get(url)
       .then(function(res){
         resolve(res.data);
@@ -66,7 +66,7 @@ module.exports = {
    */
   view: function(category, content) {
     return new Promise(function(resolve, reject) {
-      const url = constants.endpoint + '/view/' + category + '/' + content;
+      const url = constants.endpoint + '/filters/view/' + category + '/' + content;
       request.get(url)
       .then(function(res){
         resolve(res.data);
@@ -91,7 +91,7 @@ module.exports = {
    */
   add: function(category, data) {
     return new Promise(function(resolve, reject) {
-      const url = constants.endpoint + '/add/' + category;
+      const url = constants.endpoint + '/filters/add/' + category;
       request.post(url, data)
       .then(function(res){
         resolve(res.data);
@@ -111,7 +111,7 @@ module.exports = {
    */
   remove: function(category, id) {
     return new Promise(function(resolve, reject) {
-      const url = constants.endpoint + '/remove/' + id;
+      const url = constants.endpoint + '/filters/remove/' + id;
       request.delete(url)
       .then(function(res){
         resolve(res.data);

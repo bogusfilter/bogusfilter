@@ -7,6 +7,9 @@
  * https://www.bogusfilter.com
  *
  * index.js
+ *
+ * Documentation
+ * @see https://docs.bogusfilter.com
  */
 var Promise = require('bluebird');
 var request = require('./utils/request');
@@ -14,6 +17,12 @@ var constants = require('./utils/constants');
 var tools = require('./utils/tools');
 
 module.exports = {
+  /**
+   * status
+   * Checks the status of the service
+   * @param {void}
+   * @return {Promise}
+   */
   status: function() {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/status';
@@ -27,7 +36,89 @@ module.exports = {
       })
     });
   },
-  check: function(content) {
-    return content;
-  }
+  /**
+   * check
+   * Handles checking some entered content.
+   * @param {string} category The category that the filter is in.
+   * @param {string} content The content to check for bogusness.
+   * @return {Promise}
+   */
+  check: function(category, content) {
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/check/' + category + '/' + content;
+      request.get(url)
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
+   * view
+   * Handles returning more info about a filter.
+   * @param {string} category The category that the filter is in.
+   * @param {string} content The content to check for bogusness.
+   * @return {Promise}
+   */
+  view: function(category, content) {
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/view/' + category + '/' + content;
+      request.get(url)
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
+   * add
+   * Handles adding a filter.
+   * @param {string} category The category that the filter is in.
+   * @param {string} data The filter data to add.
+   * {
+   *   title: 'Example Title',
+   *   content: 'example',
+   *   description: 'Example description',
+   * }
+   * @return {Promise}
+   */
+  add: function(category, data) {
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/add/' + category;
+      request.post(url, data)
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
+   * remove
+   * Handles removing a filter.
+   * @param {string} category The category that the filter is in.
+   * @param {string} id The filter to remove.
+   * @return {Promise}
+   */
+  remove: function(category, id) {
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/remove/' + id;
+      request.delete(url)
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
 }

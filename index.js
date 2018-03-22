@@ -41,11 +41,12 @@ module.exports = {
    * Handles checking some entered content.
    * @param {string} category The category that the filter is in.
    * @param {string} content The content to check for bogusness.
+   * @param {boolean} useExtras Whether or not to use Bogus Filter extras.
    * @return {Promise}
    */
-  check: function(category, content) {
+  check: function(category, content, useExtras = false) {
     return new Promise(function(resolve, reject) {
-      const url = constants.endpoint + '/check/' + category + '/' + content;
+      const url = constants.endpoint + '/check/' + category + '/' + content + '/' + useExtras;
       request.get(url)
       .then(function(res){
         resolve(res.data);

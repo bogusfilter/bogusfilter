@@ -48,8 +48,34 @@ describe('#bogusfilter', function() {
           done();
         });
     });
-    it('should run the check command', function() {
-        var result = bogusfilter.check('data');
-        expect(result).to.equal('data');
+    it('should run the check command with yep.it', function(done) {
+      bogusfilter.check('email', 'yep.it', true)
+      .then(function(res){
+        const response = {
+          bogus: true,
+        };
+        expect(res).to.have.property('bogus');
+        expect(res.bogus).to.eql(true);
+        done();
+      })
+      .catch(function(err){
+        expect(err).to.eql(undefined);
+        done();
+      });
+    });
+    it('should run the check command with nope.it', function(done) {
+      bogusfilter.check('email', 'nope.it')
+      .then(function(res){
+        const response = {
+          bogus: false,
+        };
+        expect(res).to.have.property('bogus');
+        expect(res.bogus).to.eql(false);
+        done();
+      })
+      .catch(function(err){
+        expect(err).to.eql(undefined);
+        done();
+      });
     });
 });

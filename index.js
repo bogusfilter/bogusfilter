@@ -14,6 +14,19 @@ var constants = require('./utils/constants');
 var tools = require('./utils/tools');
 
 module.exports = {
+  status: function() {
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/status';
+      request.get(url)
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
   check: function(content) {
     return content;
   }

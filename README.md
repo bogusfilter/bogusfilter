@@ -1,7 +1,5 @@
-Bogus Filter
-============
-
-The node agent that allows you to start filtering out bogus input data from your application.
+# Bogus Filter
+> The node agent that allows you to start filtering out bogus input data from your application.
 
 ## Installation
 

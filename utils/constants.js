@@ -2,9 +2,10 @@
  * Constants that are reused throughout the app.
  * utils/constants.js
  */
-
 const isProduction = process.env.NODE_ENV || 'local';
 const apiKey = process.env.BOGUS_FILTER_API_KEY;
+const endpointSSL = 'https://api.bogusfilter.com/v1';
+const endpoint = 'http://api.bogusfilter.com/v1';
 
 if (!apiKey) {
   console.error('\n------------------------------------------------------------------');
@@ -13,7 +14,9 @@ if (!apiKey) {
   console.error('------------------------------------------------------------------\n');
 }
 
-export {
+module.exports = {
   isProduction,
   apiKey,
+  endpoint,
+  endpointSSL,
 };

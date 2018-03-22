@@ -3,10 +3,10 @@
  * Tools that can be used throughout the app.
  */
 
-var os = require('os');
-var requestExternal = require('./utils/request-external');
+const os = require('os');
+const requestExternal = require('./request-external');
 
-var ifaces = os.networkInterfaces();
+const ifaces = os.networkInterfaces();
 
 module.exports = {
   /**
@@ -69,5 +69,5 @@ module.exports = {
                 console.log(err.data);
               }
             });
-  };
-}
+  },
+};

@@ -2,10 +2,13 @@
  * Handles making requests to the Bogus Filter API.
  * utils/request.js
  */
-import axios from 'axios';
+const dotenv = require('dotenv').config();
+const axios = require('axios');
+const constants = require('./constants');
 
 // @see https://github.com/mzabriskie/axios/issues/876
 axios.defaults.withCredentials = true;
+axios.defaults.headers.common['X-API-KEY'] = constants.apiKey;
 
 // axios.interceptors.request.use(config => {
 //   config;
@@ -20,4 +23,4 @@ axios.defaults.withCredentials = true;
 //   return Promise.reject(error);
 // });
 
-export default axios;
+module.exports = axios;

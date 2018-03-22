@@ -1,0 +1,36 @@
+{
+  "name": "bogusfilter",
+  "version": "1.0.0",
+  "description": "Bogus Filter helps you protect your application by suggesting, and if you choose, blocking data input by bots, spammers, competition and whoever else you choose.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bogusfilter/bogusfilter.git"
+  },
+  "keywords": [
+    "security",
+    "filtering",
+    "validation",
+    "form",
+    "web",
+    "app",
+    "input",
+    "data"
+  ],
+  "author": "Rob Sawyer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bogusfilter/bogusfilter/issues"
+  },
+  "homepage": "https://github.com/bogusfilter/bogusfilter#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.0.4"
+  },
+  "dependencies": {
+    "npm": "^5.7.1"
+  }
+}

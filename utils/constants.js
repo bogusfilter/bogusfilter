@@ -2,11 +2,14 @@
  * Constants that are reused throughout the app.
  * utils/constants.js
  */
-const isProduction = process.env.NODE_ENV || 'local';
+const isProduction = process.env ? process.env.NODE_ENV : 'local';
 if (!isProduction) {
   const dotenv = require('dotenv').load();
 }
-const apiKey = process.env.BOGUS_FILTER_API_KEY || console.error('BOGUS_FILTER_API_KEY environment variable NOT found.');
+const apiKey = process.env ? process.env.BOGUS_FILTER_API_KEY : '';
+if (!apiKey) {
+  console.error('Unable to load the BOGUS_FILTER_API_KEY environment variable.');
+}
 const endpointSSL = 'https://api.bogusfilter.com/v1';
 const endpoint = 'http://api.bogusfilter.com/v1';
 

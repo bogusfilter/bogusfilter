@@ -12,6 +12,9 @@
  * @see https://docs.bogusfilter.com
  */
 var Promise = require('bluebird');
+var dotenv = require('dotenv').config(
+  path: path.resolve(process.cwd(), '.env')
+);
 var request = require('./utils/request');
 var constants = require('./utils/constants');
 var tools = require('./utils/tools');

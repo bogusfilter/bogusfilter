@@ -2,8 +2,6 @@
  * Handles making requests to the Bogus Filter API.
  * utils/request.js
  */
-const fs  = require('fs');
-const dotenv = require('dotenv').config();
 const axios = require('axios');
 const constants = require('./constants');
 

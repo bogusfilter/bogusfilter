@@ -2,7 +2,7 @@
  * Constants that are reused throughout the app.
  * utils/constants.js
  */
-const isProduction = process.env ? process.env.NODE_ENV : 'local';
+const isProduction = process.env ? process.env.NODE_ENV : false;
 if (!isProduction) {
   const dotenv = require('dotenv').load();
 }

@@ -35,5 +35,8 @@
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
     "npm": "^5.7.1"
+  },
+  "directories": {
+    "test": "test"
   }
 }

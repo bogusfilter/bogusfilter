@@ -5,6 +5,7 @@
  * The main tests for Bogus Filter
  */
 var expect = require('chai').expect;
+var fs  = require('fs');
 var dotenv = require('dotenv');
 var path = require('path');
 var bogusfilter = require('../index');

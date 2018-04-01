@@ -7,7 +7,12 @@ const constants = require('./constants');
 
 // @see https://github.com/mzabriskie/axios/issues/876
 axios.defaults.withCredentials = true;
-axios.defaults.headers.common['X-API-Key'] = constants.apiKey;
+try {
+  axios.defaults.headers.common['X-API-Key'] = constants.apiKey;
+} catch (err) {
+  // Handle the error
+  console.error(err);
+}
 
 // axios.interceptors.request.use(config => {
 //   config;

@@ -1,9 +1,12 @@
 {
   "name": "bogusfilter",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Bogus Filter helps you protect your application by suggesting, and if you choose, blocking data input by bots, spammers, competition and whoever else you choose.",
   "main": "index.js",
   "scripts": {
+    "start": "if-env NODE_ENV=local ?? npm run start:dev || npm run start:prod",
+    "start:dev": "nodenv -f .",
+    "start:prod": "node .",
     "test": "mocha --reporter spec"
   },
   "repository": {
@@ -35,6 +38,7 @@
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
     "dotenv-webpack": "^1.5.5",
+    "if-env": "^1.0.4",
     "npm": "^5.7.1"
   },
   "directories": {

@@ -11,6 +11,10 @@
  * Documentation
  * @see https://docs.bogusfilter.com
  */
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load();
+}
 var Promise = require('bluebird');
 var request = require('./utils/request');
 var constants = require('./utils/constants');

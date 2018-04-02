@@ -8,7 +8,7 @@ const endpoint = 'http://api.bogusfilter.com/v1';
 
 // Try to load the bogus.json file with the key.
 if (!apiKey) {
-  const fs = require('fs');
+  const fs = require('file-system');
   const path = require('path');
   let bogusFile;
   try {

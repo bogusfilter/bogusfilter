@@ -38,10 +38,10 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
+    "file-system": "^2.2.2",
     "if-env": "^1.0.4",
     "nodenv": "^0.1.0",
-    "npm": "^5.7.1",
-    "rn-nodeify": "^10.0.0"
+    "npm": "^5.7.1"
   },
   "directories": {
     "test": "test"

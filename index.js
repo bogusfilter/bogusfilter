@@ -18,6 +18,15 @@ var tools = require('./utils/tools');
 
 module.exports = {
   /**
+   * getKey
+   * Returns the API key currently being used.
+   * @param {void}
+   * @return {string}
+   */
+  getKey: function() {
+    return process.env.BOGUS_FILTER_API_KEY;
+  },
+  /**
    * status
    * Checks the status of the service
    * @param {void}
@@ -26,6 +35,26 @@ module.exports = {
   status: function() {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/status';
+      request.get(url)
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
+   * activity
+   * Gets a list of acitivity data that is used for the client dashboard.
+   * @param {string} category The category that the filter is in.
+   * @param {boolean} useExtras Whether or not to use Bogus Filter extras.
+   * @return {Promise}
+   */
+  activity: function(category, useExtras = false) {
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/filters/activity/' + category + '/' + useExtras;
       request.get(url)
       .then(function(res){
         resolve(res.data);

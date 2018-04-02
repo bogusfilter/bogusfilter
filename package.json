@@ -7,7 +7,8 @@
     "start": "if-env NODE_ENV=local ?? npm run start:dev || npm run start:prod",
     "start:dev": "nodenv -f index.js",
     "start:prod": "node index.js",
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec",
+    "postinstall": "node_modules/.bin/rn-nodeify --install fs,https --hack"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,8 @@
     "bluebird": "^3.5.1",
     "if-env": "^1.0.4",
     "nodenv": "^0.1.0",
-    "npm": "^5.7.1"
+    "npm": "^5.7.1",
+    "rn-nodeify": "^10.0.0"
   },
   "directories": {
     "test": "test"

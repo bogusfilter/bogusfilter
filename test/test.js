@@ -8,27 +8,27 @@ var expect = require('chai').expect;
 var dotenv = require('dotenv');
 var path = require('path');
 var bogusfilter = require('../index');
-var dotenvConfig = dotenv.config({
-  path: path.resolve(process.cwd(), '.env.example')
-});
+// var dotenvConfig = dotenv.config({
+//   path: path.resolve(process.cwd(), '.env.example')
+// });
 
 describe('#bogusfilter environment variables', function() {
-    it('should not have any errors', function() {
-        var result = dotenvConfig.error;
-        expect(result).to.equal(undefined);
-    });
-    it('should be an object', function() {
-        var result = dotenvConfig.parsed;
-        expect(result).to.be.an('object');
-    });
-    it('should have property BOGUS_FILTER_API_KEY', function() {
-        var result = dotenvConfig.parsed;
-        expect(result).to.have.property('BOGUS_FILTER_API_KEY');
-    });
+    // it('should not have any errors', function() {
+    //     var result = dotenvConfig.error;
+    //     expect(result).to.equal(undefined);
+    // });
+    // it('should be an object', function() {
+    //     var result = dotenvConfig.parsed;
+    //     expect(result).to.be.an('object');
+    // });
+    // it('should have property BOGUS_FILTER_API_KEY', function() {
+    //     var result = dotenvConfig.parsed;
+    //     expect(result).to.have.property('BOGUS_FILTER_API_KEY');
+    // });
     it('should be demo user', function() {
-        var result = dotenvConfig.parsed;
+        // var result = dotenvConfig.parsed;
         const demoUser = { BOGUS_FILTER_API_KEY: '0A7fSh0qSrul1c60fGygCRhFYnqEijzB' };
-        expect(result).to.deep.equal(demoUser);
+        expect(process.env.BOGUS_FILTER_API_KEY).to.deep.equal(demoUser.BOGUS_FILTER_API_KEY);
     });
 });
 

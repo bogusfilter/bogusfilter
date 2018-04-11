@@ -151,4 +151,76 @@ module.exports = {
       })
     });
   },
+  /**
+   * categories
+   * Handles fetching categories from the API
+   * @param {boolean} list Whether to return data as a list. Useful for <select>s
+   * @return {Promise}
+   */
+  categories: function(list = false) {
+    return new Promise(function(resolve, reject) {
+      let url = constants.endpoint;
+      if (list) {
+        url += '/users/categories/list'
+      } else {
+        url += '/users/categories'
+      }
+      request.get(url)
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
+   * groupCategories
+   * Handles fetching categories for the groups from the API
+   * @param {boolean} list Whether to return data as a list. Useful for <select>s
+   * @return {Promise}
+   */
+  groupCategories: function(list = false) {
+    return new Promise(function(resolve, reject) {
+      let url = constants.endpoint;
+      if (list) {
+        url += '/users/group-categories/list'
+      } else {
+        url += '/users/group-categories'
+      }
+      request.get(url)
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
+   * groups
+   * Handles fetching groups from the API
+   * @param {boolean} list Whether to return data as a list. Useful for <select>s
+   * @return {Promise}
+   */
+  groups: function(list = false) {
+    return new Promise(function(resolve, reject) {
+      let url = constants.endpoint;
+      if (list) {
+        url += '/users/groups/list'
+      } else {
+        url += '/users/groups'
+      }
+      request.get(url)
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
 }

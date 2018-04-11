@@ -1,13 +1,13 @@
 {
   "name": "bogusfilter",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "description": "Bogus Filter helps you protect your application by suggesting, and if you choose, blocking data input by bots, spammers, competition and whoever else you choose.",
   "main": "index.js",
   "scripts": {
     "start": "if-env NODE_ENV=local ?? npm run start:dev || npm run start:prod",
     "start:dev": "nodenv -f index.js",
-    "publish": "grunt && npm publish",
-    "bump": "npm run test && git push && npm publish",
+    "deploy": "grunt",
+    "bump": "npm run test && grunt && npm publish",
     "start:prod": "node index.js",
     "test": "mocha --reporter spec"
   },

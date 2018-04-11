@@ -7,6 +7,7 @@
     "start": "if-env NODE_ENV=local ?? npm run start:dev || npm run start:prod",
     "start:dev": "nodenv -f index.js",
     "publish": "npm run test && git push && npm publish",
+    "bump": "npm run test && git push && npm publish",
     "start:prod": "node index.js",
     "test": "mocha --reporter spec"
   },
@@ -33,6 +34,8 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "dotenv": "^5.0.1",
+    "grunt": "^1.0.2",
+    "grunt-bump": "^0.8.0",
     "mocha": "^5.0.4"
   },
   "dependencies": {

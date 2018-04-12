@@ -109,18 +109,19 @@ module.exports = {
   /**
    * add
    * Handles adding a filter.
-   * @param {string} category The category that the filter is in.
    * @param {string} data The filter data to add.
    * {
+   *   group: 'Example Group',
+   *   category: 'Example Category',
    *   title: 'Example Title',
    *   content: 'example',
    *   description: 'Example description',
    * }
    * @return {Promise}
    */
-  add: function(category, data) {
+  add: function(data) {
     return new Promise(function(resolve, reject) {
-      const url = constants.endpoint + '/filters/add/' + category;
+      const url = constants.endpoint + '/filters/add';
       request.post(url, data)
       .then(function(res){
         resolve(res.data);
@@ -134,11 +135,10 @@ module.exports = {
   /**
    * remove
    * Handles removing a filter.
-   * @param {string} category The category that the filter is in.
    * @param {string} id The filter to remove.
    * @return {Promise}
    */
-  remove: function(category, id) {
+  remove: function(id) {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/filters/remove/' + id;
       request.delete(url)

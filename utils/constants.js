@@ -9,7 +9,6 @@ var endpoint = 'http://api.bogusfilter.com/v1';
 var endpointTimeout = 15000;
 
 module.exports = {
-  endpoint: endpoint,
-  endpointSSL: endpointSSL,
+  endpoint: endpointSSL,
   endpointTimeout: endpointTimeout,
 };

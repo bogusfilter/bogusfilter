@@ -49,13 +49,106 @@ module.exports = {
    * activity
    * Gets a list of acitivity data that is used for the client dashboard.
    * @param {string} category The category that the filter is in.
+   * @param {string} key The client API key.
    * @param {boolean} useExtras Whether or not to use Bogus Filter extras.
    * @return {Promise}
    */
-  activity: function(category, useExtras = false) {
+  activity: function(category, key, useExtras) {
+    if (!useExtras) {
+      useExtras = false;
+    }
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/filters/activity/' + category + '/' + useExtras;
-      request.get(url)
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
+   * apiCount
+   * Gets the total API request count for a user.
+   * @param {string} key The client API key.
+   * @return {Promise}
+   */
+  apiCount: function(key) {
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/users/requests/api/count';
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
+   * apiRequests
+   * Gets the total API requests for a user.
+   * @param {string} key The client API key.
+   * @return {Promise}
+   */
+  apiRequests: function(key) {
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/users/requests/api';
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
+   * bogusCount
+   * Gets the total bogus results for a user.
+   * @param {string} key The client API key.
+   * @return {Promise}
+   */
+  bogusCount: function(key) {
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/users/requests/bogus';
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -70,13 +163,24 @@ module.exports = {
    * Handles checking some entered content.
    * @param {string} category The category that the filter is in.
    * @param {string} content The content to check for bogusness.
+   * @param {string} key The client API key.
    * @param {boolean} useExtras Whether or not to use Bogus Filter extras.
    * @return {Promise}
    */
-  check: function(category, content, useExtras = false) {
+  check: function(category, content, key, useExtras) {
+    if (!useExtras) {
+      useExtras = false;
+    }
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/filters/check/' + category + '/' + content + '/' + useExtras;
-      request.get(url)
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -91,12 +195,75 @@ module.exports = {
    * Handles returning more info about a filter.
    * @param {string} category The category that the filter is in.
    * @param {string} content The content to check for bogusness.
+   * @param {string} key The client API key.
    * @return {Promise}
    */
-  view: function(category, content) {
+  view: function(category, content, key) {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/filters/view/' + category + '/' + content;
-      request.get(url)
+      // request.defaults.headers.common['X-API-Key'] = key;
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+      })
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
+   * recentFilters
+   * Handles returning a certain number of recent filters.
+   * @param {string} perPage The content to check for bogusness.
+   * @param {string} key The client API key.
+   * @return {Promise}
+   */
+  recentFilters: function(perPage, key) {
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/users/filters/recent?perPage=' + perPage;
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        withCredentials: true,
+      })
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
+   * globalFilters
+   * Handles returning a certain number of global filters.
+   * @param {string} perPage The content to check for bogusness.
+   * @param {string} key The client API key.
+   * @return {Promise}
+   */
+  globalFilters: function(perPage, key) {
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/users/filters/recent?perPage=' + perPage + '&global=true';
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -117,11 +284,13 @@ module.exports = {
    *   content: 'example',
    *   description: 'Example description',
    * }
+   * @param {string} key The client API key.
    * @return {Promise}
    */
-  add: function(data) {
+  add: function(data, key) {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/filters/add';
+      request.defaults.headers.common['X-API-Key'] = key;
       request.post(url, data)
       .then(function(res){
         resolve(res.data);
@@ -136,11 +305,13 @@ module.exports = {
    * remove
    * Handles removing a filter.
    * @param {string} id The filter to remove.
+   * @param {string} key The client API key.
    * @return {Promise}
    */
-  remove: function(id) {
+  remove: function(id, key) {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/filters/remove/' + id;
+      request.defaults.headers.common['X-API-Key'] = key;
       request.delete(url)
       .then(function(res){
         resolve(res.data);
@@ -155,17 +326,30 @@ module.exports = {
    * categories
    * Handles fetching categories from the API
    * @param {boolean} list Whether to return data as a list. Useful for <select>s
+   * @param {string} key The client API key.
    * @return {Promise}
    */
-  categories: function(list = false) {
+  categories: function(list, key) {
+    if (!list) {
+      list = false;
+    }
     return new Promise(function(resolve, reject) {
-      let url = constants.endpoint;
+      var url = constants.endpoint;
       if (list) {
-        url += '/users/categories/list'
+        url += '/users/categories/list';
       } else {
-        url += '/users/categories'
+        url += '/users/categories';
       }
-      request.get(url)
+      // request.defaults.headers.common['X-API-Key'] = key;
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -179,17 +363,31 @@ module.exports = {
    * groupCategories
    * Handles fetching categories for the groups from the API
    * @param {boolean} list Whether to return data as a list. Useful for <select>s
+   * @param {string} key The client API key.
    * @return {Promise}
    */
-  groupCategories: function(list = false) {
+  groupCategories: function(list, key) {
+    if (!list) {
+      list = false;
+    }
     return new Promise(function(resolve, reject) {
-      let url = constants.endpoint;
+      var url = constants.endpoint;
       if (list) {
-        url += '/users/group-categories/list'
+        url += '/users/group-categories/list';
       } else {
-        url += '/users/group-categories'
+        url += '/users/group-categories';
       }
-      request.get(url)
+      // request.defaults.headers.common['X-API-Key'] = key;
+      // request.defaults.withCredentials = false;
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -203,17 +401,30 @@ module.exports = {
    * groups
    * Handles fetching groups from the API
    * @param {boolean} list Whether to return data as a list. Useful for <select>s
+   * @param {string} key The client API key.
    * @return {Promise}
    */
-  groups: function(list = false) {
+  groups: function(list, key) {
+    if (!list) {
+      list = false;
+    }
     return new Promise(function(resolve, reject) {
-      let url = constants.endpoint;
+      var url = constants.endpoint;
       if (list) {
-        url += '/users/groups/list'
+        url += '/users/groups/list';
       } else {
-        url += '/users/groups'
+        url += '/users/groups';
       }
-      request.get(url)
+      // request.defaults.headers.common['X-API-Key'] = key;
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })

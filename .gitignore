@@ -29,6 +29,7 @@ node_modules
 .env
 .env.production
 bogus.json
+.git-credentials
 
 # Ignore .DS_Store files on OS X
 .DS_Store

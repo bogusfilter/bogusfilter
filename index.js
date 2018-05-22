@@ -188,7 +188,8 @@ module.exports = {
   /**
    * recentFilters
    * Handles returning a certain number of recent filters.
-   * @param {string} perPage The content to check for bogusness.
+   * @param {string} perPage Number of results per page.
+   * @param {string} page Page number to request
    * @param {string} key The client API key.
    * @return {Promise}
    */

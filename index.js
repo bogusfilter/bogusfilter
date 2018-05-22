@@ -173,7 +173,6 @@ module.exports = {
   view: function(category, content, key) {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/filters/view/' + category + '/' + content;
-      // request.defaults.headers.common['X-API-Key'] = key;
       .get(url)
       .set('X-API-Key', key)
       .then(function(res){

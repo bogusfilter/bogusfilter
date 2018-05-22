@@ -1,6 +1,6 @@
 {
   "name": "bogusfilter",
-  "version": "1.2.27",
+  "version": "1.2.28",
   "description": "Bogus Filter helps you protect your application by suggesting, and if you choose, blocking data input by bots, spammers, competition and whoever else you choose.",
   "main": "index.js",
   "scripts": {

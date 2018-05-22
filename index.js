@@ -173,6 +173,7 @@ module.exports = {
   view: function(category, content, key) {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/filters/view/' + category + '/' + content;
+      request
       .get(url)
       .set('X-API-Key', key)
       .then(function(res){
@@ -196,6 +197,7 @@ module.exports = {
     if (!page) page = 1;
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/users/filters/recent?page=' + page + '&perPage=' + perPage;
+      request
       .get(url)
       .set('X-API-Key', key)
       .then(function(res){
@@ -217,6 +219,7 @@ module.exports = {
   globalFilters: function(perPage, key) {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/users/filters/recent?perPage=' + perPage + '&global=true';
+      request
       .get(url)
       .set('X-API-Key', key)
       .then(function(res){
@@ -245,7 +248,6 @@ module.exports = {
   add: function(data, key) {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/filters/add';
-      // request.defaults.headers.common['X-API-Key'] = key;
       request
       .post(url, data)
       .set('X-API-Key', key)
@@ -268,7 +270,6 @@ module.exports = {
   remove: function(id, key) {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/filters/remove/' + id;
-      // request.defaults.headers.common['X-API-Key'] = key;
       request
       .delete(url)
       .set('X-API-Key', key)
@@ -299,7 +300,6 @@ module.exports = {
       } else {
         url += '/users/categories';
       }
-      // request.defaults.headers.common['X-API-Key'] = key;
       request
       .get(url)
       .set('X-API-Key', key)
@@ -330,8 +330,6 @@ module.exports = {
       } else {
         url += '/users/group-categories';
       }
-      // request.defaults.headers.common['X-API-Key'] = key;
-      // request.defaults.withCredentials = false;
       request
       .get(url)
       .set('X-API-Key', key)
@@ -362,7 +360,6 @@ module.exports = {
       } else {
         url += '/users/groups';
       }
-      // request.defaults.headers.common['X-API-Key'] = key;
       request
       .get(url)
       .set('X-API-Key', key)

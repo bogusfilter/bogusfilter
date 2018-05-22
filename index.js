@@ -192,9 +192,11 @@ module.exports = {
    * @param {string} key The client API key.
    * @return {Promise}
    */
-  recentFilters: function(perPage, key) {
+  recentFilters: function(perPage, page, key) {
+    if (!perPage) perPage = 5;
+    if (!page) page = 1;
     return new Promise(function(resolve, reject) {
-      const url = constants.endpoint + '/users/filters/recent?perPage=' + perPage;
+      const url = constants.endpoint + '/users/filters/recent?page=' + page + '&perPage=' + perPage;
       .get(url)
       .set('X-API-Key', key)
       .then(function(res){

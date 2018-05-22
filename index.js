@@ -35,8 +35,15 @@ module.exports = {
   status: function() {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/status';
-      request
-      .get(url)
+      request({
+        url: url,
+        method: 'get',
+        // headers: {
+        //   'X-API-KEY': key,
+        // },
+        data: {},
+        // withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -60,9 +67,15 @@ module.exports = {
     }
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/filters/activity/' + category + '/' + useExtras;
-      request
-      .get(url)
-      .set('X-API-Key', key)
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -81,9 +94,15 @@ module.exports = {
   apiCount: function(key) {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/users/requests/api/count';
-      request
-      .get(url)
-      .set('X-API-Key', key)
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -102,9 +121,15 @@ module.exports = {
   apiRequests: function(key) {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/users/requests/api';
-      request
-      .get(url)
-      .set('X-API-Key', key)
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -123,9 +148,15 @@ module.exports = {
   bogusCount: function(key) {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/users/requests/bogus';
-      request
-      .get(url)
-      .set('X-API-Key', key)
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -150,9 +181,15 @@ module.exports = {
     }
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/filters/check/' + category + '/' + content + '/' + useExtras;
-      request
-      .get(url)
-      .set('X-API-Key', key)
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -173,9 +210,15 @@ module.exports = {
   view: function(category, content, key) {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/filters/view/' + category + '/' + content;
-      request
-      .get(url)
-      .set('X-API-Key', key)
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -198,9 +241,15 @@ module.exports = {
     if (!page) page = 1;
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/users/filters/recent?page=' + page + '&perPage=' + perPage;
-      request
-      .get(url)
-      .set('X-API-Key', key)
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -220,9 +269,15 @@ module.exports = {
   globalFilters: function(perPage, key) {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/users/filters/recent?perPage=' + perPage + '&global=true';
-      request
-      .get(url)
-      .set('X-API-Key', key)
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -249,9 +304,15 @@ module.exports = {
   add: function(data, key) {
     return new Promise(function(resolve, reject) {
       const url = constants.endpoint + '/filters/add';
-      request
-      .post(url, data)
-      .set('X-API-Key', key)
+      request({
+        url: url,
+        method: 'post',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: data,
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -301,9 +362,15 @@ module.exports = {
       } else {
         url += '/users/categories';
       }
-      request
-      .get(url)
-      .set('X-API-Key', key)
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -331,9 +398,15 @@ module.exports = {
       } else {
         url += '/users/group-categories';
       }
-      request
-      .get(url)
-      .set('X-API-Key', key)
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -361,9 +434,15 @@ module.exports = {
       } else {
         url += '/users/groups';
       }
-      request
-      .get(url)
-      .set('X-API-Key', key)
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })

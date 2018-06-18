@@ -331,10 +331,18 @@ module.exports = {
    */
   archive: function(id, key) {
     return new Promise(function(resolve, reject) {
-      const url = constants.endpoint + '/filters/archive/' + id;
-      request
-      .post(url)
-      .set('X-API-Key', key)
+      const url = constants.endpoint + '/filters/archive';
+      request({
+        url: url,
+        method: 'post',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {
+          _id: id,
+        },
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })
@@ -353,10 +361,18 @@ module.exports = {
    */
   remove: function(id, key) {
     return new Promise(function(resolve, reject) {
-      const url = constants.endpoint + '/filters/remove/' + id;
-      request
-      .delete(url)
-      .set('X-API-Key', key)
+      const url = constants.endpoint + '/filters/remove';
+      request({
+        url: url,
+        method: 'delete',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {
+          _id: id,
+        },
+        withCredentials: true,
+      })
       .then(function(res){
         resolve(res.data);
       })

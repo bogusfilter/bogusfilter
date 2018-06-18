@@ -323,6 +323,28 @@ module.exports = {
     });
   },
   /**
+   * archive
+   * Handles archiving a filter.
+   * @param {string} id The filter to archive.
+   * @param {string} key The client API key.
+   * @return {Promise}
+   */
+  archive: function(id, key) {
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/filters/archive/' + id;
+      request
+      .post(url)
+      .set('X-API-Key', key)
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
    * remove
    * Handles removing a filter.
    * @param {string} id The filter to remove.

@@ -353,6 +353,36 @@ module.exports = {
     });
   },
   /**
+   * unarchive
+   * Handles unarchiving a filter.
+   * @param {string} id The filter to unarchive.
+   * @param {string} key The client API key.
+   * @return {Promise}
+   */
+  unarchive: function(id, key) {
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/filters/unarchive';
+      request({
+        url: url,
+        method: 'post',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {
+          _id: id,
+        },
+        withCredentials: true,
+      })
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
    * remove
    * Handles removing a filter.
    * @param {string} id The filter to remove.

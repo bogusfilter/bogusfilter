@@ -200,6 +200,39 @@ module.exports = {
     });
   },
   /**
+   * checkDemo
+   * Handles checking some entered content. Used only for demo purposes.
+   * @param {string} category The category that the filter is in.
+   * @param {string} content The content to check for bogusness.
+   * @param {string} key The client API key.
+   * @param {boolean} useExtras Whether or not to use Bogus Filter extras.
+   * @return {Promise}
+   */
+  checkDemo: function(category, content, key, useExtras) {
+    if (!useExtras) {
+      useExtras = false;
+    }
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/filters/check/demo/' + category + '/' + content + '/' + useExtras;
+      request({
+        url: url,
+        method: 'get',
+        // headers: {
+        //   'X-API-KEY': key,
+        // },
+        data: {},
+        // withCredentials: true,
+      })
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
    * view
    * Handles returning more info about a filter.
    * @param {string} category The category that the filter is in.

@@ -113,14 +113,76 @@ module.exports = {
     });
   },
   /**
-   * apiRequests
-   * Gets the total API requests for a user.
+   * apiCountForMonth
+   * Gets the total API request month count for a user.
    * @param {string} key The client API key.
    * @return {Promise}
    */
-  apiRequests: function(key) {
+  apiCountForMonth: function(key) {
     return new Promise(function(resolve, reject) {
-      const url = constants.endpoint + '/users/requests/api';
+      const url = constants.endpoint + '/users/requests/api/count/month';
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
+   * apiRequestsForMonth
+   * Gets the API request objects for a user for the month.
+   * @param {string} perPage Number of results per page.
+   * @param {string} page Page number to request
+   * @param {string} key The client API key.
+   * @return {Promise}
+   */
+  apiRequestsForMonth: function(perPage, page, key) {
+    if (!perPage) perPage = 5;
+    if (!page) page = 1;
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/users/requests/api/month?page=' + page + '&perPage=' + perPage;
+      request({
+        url: url,
+        method: 'get',
+        headers: {
+          'X-API-KEY': key,
+        },
+        data: {},
+        withCredentials: true,
+      })
+      .then(function(res){
+        resolve(res.data);
+      })
+      .catch(function(err){
+        console.error(err);
+        reject(err);
+      })
+    });
+  },
+  /**
+   * apiRequests
+   * Gets the total API requests for a user.
+   * @param {string} perPage Number of results per page.
+   * @param {string} page Page number to request
+   * @param {string} key The client API key.
+   * @return {Promise}
+   */
+  apiRequests: function(perPage, page, key) {
+    if (!perPage) perPage = 5;
+    if (!page) page = 1;
+    return new Promise(function(resolve, reject) {
+      const url = constants.endpoint + '/users/requests/api?page=' + page + '&perPage=' + perPage;
       request({
         url: url,
         method: 'get',

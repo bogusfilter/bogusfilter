@@ -58,15 +58,15 @@ module.exports = {
    * Gets a list of acitivity data that is used for the client dashboard.
    * @param {string} category The category that the filter is in.
    * @param {string} key The client API key.
-   * @param {boolean} useExtras Whether or not to use Bogus Filter extras.
+   * @param {boolean} useGlobal Whether or not to use Bogus Filter global extras.
    * @return {Promise}
    */
-  activity: function(category, key, useExtras) {
-    if (!useExtras) {
-      useExtras = false;
+  activity: function(category, key, useGlobal) {
+    if (!useGlobal) {
+      useGlobal = false;
     }
     return new Promise(function(resolve, reject) {
-      const url = constants.endpoint + '/filters/activity/' + category + '/' + useExtras;
+      const url = constants.endpoint + '/filters/activity/' + category + '/' + useGlobal;
       request({
         url: url,
         method: 'get',
@@ -234,15 +234,15 @@ module.exports = {
    * @param {string} category The category that the filter is in.
    * @param {string} content The content to check for bogusness.
    * @param {string} key The client API key.
-   * @param {boolean} useExtras Whether or not to use Bogus Filter extras.
+   * @param {boolean} useGlobal Whether or not to use Bogus Filter global extras.
    * @return {Promise}
    */
-  check: function(category, content, key, useExtras) {
-    if (!useExtras) {
-      useExtras = false;
+  check: function(category, content, key, useGlobal) {
+    if (!useGlobal) {
+      useGlobal = false;
     }
     return new Promise(function(resolve, reject) {
-      const url = constants.endpoint + '/filters/check/' + category + '/' + content + '/' + useExtras;
+      const url = constants.endpoint + '/filters/check/' + category + '/' + content + '/' + useGlobal;
       request({
         url: url,
         method: 'get',
@@ -267,15 +267,15 @@ module.exports = {
    * @param {string} category The category that the filter is in.
    * @param {string} content The content to check for bogusness.
    * @param {string} key The client API key.
-   * @param {boolean} useExtras Whether or not to use Bogus Filter extras.
+   * @param {boolean} useGlobal Whether or not to use Bogus Filter global extras.
    * @return {Promise}
    */
-  checkDemo: function(category, content, key, useExtras) {
-    if (!useExtras) {
-      useExtras = false;
+  checkDemo: function(category, content, key, useGlobal) {
+    if (!useGlobal) {
+      useGlobal = false;
     }
     return new Promise(function(resolve, reject) {
-      const url = constants.endpoint + '/filters/check/demo/' + category + '/' + content + '/' + useExtras;
+      const url = constants.endpoint + '/filters/check/demo/' + category + '/' + content + '/' + useGlobal;
       request({
         url: url,
         method: 'get',

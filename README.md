@@ -9,28 +9,44 @@
 ```
 var bogusfilter = require('bogusfilter');
 
-// Note: Prior to installation, a filter with the content of yep.it
-// was added via the Bogus Filter dashboard at https://my.bogusfilter.com
-var bogus = bogusfilter.check('yep.it');
+// Note: The filter with the content of someone@competitor.com
+// is a global filter added by the Bogus Filter team.
+var bogus = bogusfilter.check('email', 'someone@competitor.com', process.env.BOGUS_API_KEY, true);
 ```
 
 Output will be:
 ```
 {
-    "success": true,
-    "query": "yep.it",
-    "bogus": true,
-    "category": {
-        "_id": "5aab32edeec8f1287c56b11c",
-        "description": "Filtered email addresses.",
-        "title": "Email",
-        "path": "email"
+  "success": true,
+  "query": "someone@competitor.com",
+  "bogus": true,
+  "group": {
+    "_id": "5aab3ea9b7450b00143b093f",
+    "title": "Bogus Emails",
+    "description": {
+      "extended": "",
+      "brief": ""
     },
-    "match": {
-        "_id": "5aab32efeec8f1287c56b3a6",
-        "content": "yep.it"
-    },
-    "timestamp": 1521711583118
+    "images": [],
+    "global": true
+  },
+  "category": {
+    "_id": "5aab3ea9b7450b00143b0937",
+    "title": "Email",
+    "description": "Filtered email addresses.",
+    "global": true
+  },
+  "match": {
+    "_id": "5ac060ab6bd2e600149164f5",
+    "title": "Landing Page Demo Email Filter",
+    "content": "someone@competitor.com",
+    "group": "5aab3ea9b7450b00143b093f",
+    "category": "5aab3ea9b7450b00143b0937",
+    "global": true
+  },
+  "matches": 8,
+  "global": true,
+  "timestamp": 1529849129832
 }
 ```
 
@@ -45,6 +61,16 @@ var bogus = bogusfilter.check('nope.it');
     "success": true,
     "query": "nope.it",
     "bogus": false,
+    "group": {
+      "_id": "5aab3ea9b7450b00143b093f",
+      "title": "Bogus Emails",
+      "description": {
+        "extended": "",
+        "brief": ""
+      },
+      "images": [],
+      "global": true
+    },
     "category": {
         "_id": "5aab32edeec8f1287c56b11c",
         "description": "Filtered email addresses.",
@@ -52,6 +78,8 @@ var bogus = bogusfilter.check('nope.it');
         "path": "email"
     },
     "match": null,
+    "matches": 1,
+    "global": true,
     "timestamp": 1521711746430
 }
 ```

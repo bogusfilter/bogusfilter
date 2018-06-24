@@ -65,7 +65,7 @@ Or...
 ```js
 // Note: nope.it is NOT a filter that has been set via the
 // Bogus Filter dashboard at https://my.bogusfilter.com
-bogusfilter.check('email', 'someone@competitor.com', process.env.BOGUS_API_KEY, true)
+bogusfilter.check('email', 'nope.it', process.env.BOGUS_API_KEY, true)
 .then((res) => {
   console.log(res);
 })

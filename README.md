@@ -1,6 +1,10 @@
 # Bogus Filter
 > The node agent that allows you to start filtering out bogus input data from your application.
 
+## Documentation
+
+For further up to date usage and documentation, visit [docs.bogusfilter.com](https://docs.bogusfilter.com/).
+
 ## Installation
 
   `npm install bogusfilter`

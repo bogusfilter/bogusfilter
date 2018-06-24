@@ -10,16 +10,22 @@ For further up to date usage and documentation, visit [docs.bogusfilter.com](htt
   `npm install bogusfilter`
 
 ## Usage
-```
+```js
 var bogusfilter = require('bogusfilter');
 
 // Note: The filter with the content of someone@competitor.com
 // is a global filter added by the Bogus Filter team.
-var bogus = bogusfilter.check('email', 'someone@competitor.com', process.env.BOGUS_API_KEY, true);
+bogusfilter.check('email', 'someone@competitor.com', process.env.BOGUS_API_KEY, true)
+.then((res) => {
+  console.log(res);
+})
+.catch((err) => {
+  console.log(err);
+});
 ```
 
 Output will be:
-```
+```json
 {
   "success": true,
   "query": "someone@competitor.com",
@@ -56,11 +62,20 @@ Output will be:
 
 Or...
 
-```
+```js
 // Note: nope.it is NOT a filter that has been set via the
 // Bogus Filter dashboard at https://my.bogusfilter.com
-var bogus = bogusfilter.check('nope.it');
+bogusfilter.check('email', 'someone@competitor.com', process.env.BOGUS_API_KEY, true)
+.then((res) => {
+  console.log(res);
+})
+.catch((err) => {
+  console.log(err);
+});
+```
 
+Output will be:
+```json
 {
     "success": true,
     "query": "nope.it",
